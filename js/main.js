@@ -57,7 +57,26 @@ function resetValues() {
     secElement.contentEditable = false
     secElement.style.borderBottom = `none`
     progress = null
+    progressStart = 0
+    progressEnd = parseInt(minutes) * 60 + parseInt(seconds)
+    degTravel = 360 / progressEnd
+    progressBar.style.background = `conic-gradient(#17171a 360deg, #17171a 360deg)`
 }
+
+startStop.onclick = function() {
+    if(startStop.innerHTML === "START") {
+        if(!(parseInt(minutes) === 0 && parseInt(seconds) === 0)) {
+            startStop.innerHTML = "STOP"
+            startStopProgress()
+        } else {
+            alert("Enter a time!")
+        }
+    } else {
+        startStop.innerHTML = "START"
+        startStopProgress()
+    }
+}
+
 settings.onclick = function () {
     if(!toggleSettings) {
         toggleSettings = true
@@ -76,18 +95,4 @@ minElement.onblur = function () {
 
 secElement.onblur = function () {
     resetValues()
-}
-
-startStop.onclick = function() {
-    if(startStop.innerHTML === "START") {
-        if(!(parseInt(minutes) === 0 && parseInt(seconds) === 0)) {
-            startStop.innerHTML = "STOP"
-            startStopProgress()
-        } else {
-            alert("Enter a time!")
-        }
-    } else {
-        startStop.innerHTML = "START"
-        startStopProgress()
-    }
 }
