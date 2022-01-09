@@ -1,3 +1,12 @@
+document.querySelector("#startStop").addEventListener("click", startTimer)
+
+function startTimer() {
+  let inputMins = document.querySelector(".minutes").parseInt(value)
+
+  
+}
+
+
 // const progressBar = document.querySelector(".outerRing"),
 //   minElem = document.querySelector("#minutes"),
 //   secElem = document.querySelector("#seconds"),
