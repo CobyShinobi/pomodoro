@@ -1,7 +1,7 @@
 document.querySelector("#startStop").addEventListener("click", startTimer)
 
 function startTimer() {
-  let inputMins = document.querySelector(".minutes").parseInt(value)
+  let minutes = document.querySelector("#minutes").innerHTML
 
   
 }
