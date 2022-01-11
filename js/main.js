@@ -3,9 +3,28 @@ document.querySelector("#startStop").addEventListener("click", startTimer)
 function startTimer() {
   let minutes = document.querySelector("#minutes").innerHTML
 
+    if(startStop.innerHTML === "Start") {
+      if(parseInt(minutes) !== 0 && parseInt(seconds) !== 0) {
+        startStop.innerHTML = "Stop"
+        // startStopProgress()   DONT FORGET TO ADD THIS FUNCTION
+      } else {
+        alert("Please enter a number value to start timer!")
+      }
+    }
+  }
   
-}
-
+  //   if (startStop.innerHTML === "START") {
+  //     if (!(parseInt(minutes) === 0 && parseInt(seconds) === 0)) {
+  //       startStop.innerHTML = "STOP";
+  //       startStopProgress();
+  //     } else {
+  //       alert("Enter the Time Value in your Timer!");
+  //     }
+  //   } else {
+  //     startStop.innerHTML = "START";
+  //     startStopProgress();
+  //   }
+  // };
 
 // const progressBar = document.querySelector(".outerRing"),
 //   minElem = document.querySelector("#minutes"),
@@ -84,19 +103,7 @@ function startTimer() {
 //       )`;
 // }
 
-// startStop.onclick = function () {
-//   if (startStop.innerHTML === "START") {
-//     if (!(parseInt(minutes) === 0 && parseInt(seconds) === 0)) {
-//       startStop.innerHTML = "STOP";
-//       startStopProgress();
-//     } else {
-//       alert("Enter the Time Value in your Timer!");
-//     }
-//   } else {
-//     startStop.innerHTML = "START";
-//     startStopProgress();
-//   }
-// };
+// 
 
 // setting.onclick = function () {
 //   if (!toggleSettings) {
