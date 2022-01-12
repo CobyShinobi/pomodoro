@@ -10,6 +10,9 @@ function startTimer() {
       } else {
         alert("Please enter a number value to start timer!")
       }
+    } else {
+      startStop.innerHTML = "Start"
+      // startStopProgress()   DONT FORGET TO ADD THIS FUNCTION      
     }
   }
   
