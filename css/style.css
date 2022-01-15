@@ -1,4 +1,3 @@
-/* Box Model Hack */
 *{
   box-sizing: border-box;
 }
@@ -95,12 +94,6 @@ body {
   --font-timer: "Bebas Neue", cursive;
   --font-stsp: "Montserrat", sans-serif;
   --font-clr: #ffffff;
-}
-
-body {
-  background: var(--bg);
-  min-height: 100vh;
-  overflow: hidden;
 }
 
 #setting {
