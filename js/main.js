@@ -1,7 +1,28 @@
+// SMURFS----------------------------------------------------------------------
 document.querySelector("#startStop").addEventListener("click", startTimer)
 
+// VARIABLES-------------------------------------------------------------------
+  // CONSTANTS
+const progressBar = document.querySelector(".outerRing"),
+  minElem = document.querySelector("#minutes"),
+  secElem = document.querySelector("#seconds"),
+  startStop = document.querySelector("#stsp"),
+  setting = document.querySelector("#setting")
+
+  // LETS
+  let seconds = document.querySelector("#seconds").innerHTML,
+    minutes = document.querySelector("#minutes").innerHTML,
+    progress = null,
+    progressStart = 0,
+    progressEnd = parseInt(minutes) * 60 + parseInt(seconds),
+    speed = 1000,
+    degTravel = 360 / progressEnd,
+    toggleSettings = false,
+    secRem = 0,
+    minRem = 0;
+  
+// FUNCTIONS-------------------------------------------------------------------
 function startTimer() {
-  let minutes = document.querySelector("#minutes").innerHTML
 
     if(startStop.innerHTML === "Start") {
       if(parseInt(minutes) !== 0 && parseInt(seconds) !== 0) {
@@ -13,6 +34,8 @@ function startTimer() {
       // startStopProgress()   DONT FORGET TO ADD THIS FUNCTION      
     }
   }
+
+  
             // DONE WITH THIS ONE
   //   if (startStop.innerHTML === "START") {
   //     if (!(parseInt(minutes) === 0 && parseInt(seconds) === 0)) {
@@ -25,22 +48,7 @@ function startTimer() {
   //   }
   // };
 
-const progressBar = document.querySelector(".outerRing"),
-  minElem = document.querySelector("#minutes"),
-  secElem = document.querySelector("#seconds"),
-  startStop = document.querySelector("#stsp"),
-  setting = document.querySelector("#setting");
 
-let minutes = document.querySelector("#minutes").innerHTML,
-  seconds = document.querySelector("#seconds").innerHTML,
-  progress = null,
-  progressStart = 0,
-  progressEnd = parseInt(minutes) * 60 + parseInt(seconds),
-  speed = 1000,
-  degTravel = 360 / progressEnd,
-  toggleSettings = false,
-  secRem = 0,
-  minRem = 0;
 
 function progressTrack() {
   progressStart++;
