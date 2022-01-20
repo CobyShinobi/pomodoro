@@ -4,13 +4,13 @@ document.querySelector("#startStop").addEventListener("click", startTimer)
 // VARIABLES-------------------------------------------------------------------
   // CONSTANTS
 const progressBar = document.querySelector(".outerRing"),
-  minElem = document.querySelector("#minutes"),
-  secElem = document.querySelector("#seconds"),
-  startStop = document.querySelector("#stsp"),
-  setting = document.querySelector("#setting")
+      minElem = document.querySelector("#minutes"),
+      secElem = document.querySelector("#seconds"),
+      startStop = document.querySelector("#stsp"),
+      setting = document.querySelector("#setting")
 
-  // LETS
-  let seconds = document.querySelector("#seconds").innerHTML,
+// LETS
+let seconds = document.querySelector("#seconds").innerHTML,
     minutes = document.querySelector("#minutes").innerHTML,
     progress = null,
     progressStart = 0,
@@ -20,60 +20,63 @@ const progressBar = document.querySelector(".outerRing"),
     toggleSettings = false,
     secRem = 0,
     minRem = 0;
-  
+    
 // FUNCTIONS-------------------------------------------------------------------
-function startTimer() {
-
-    if(startStop.innerHTML === "Start") {
-      if(parseInt(minutes) !== 0 && parseInt(seconds) !== 0) {
-        startStop.innerHTML = "Stop"
-        // startStopProgress()   DONT FORGET TO ADD THIS FUNCTION
-      } else {
-        alert("Please enter a number value to start timer!")
-        startStop.innerHTML = "Start"
+function startTimer() {    
+  if(startStop.innerHTML === "Start") {
+    if(parseInt(minutes) !== 0 && parseInt(seconds) !== 0) {
+      startStop.innerHTML = "Stop"
+      // startStopProgress()   DONT FORGET TO ADD THIS FUNCTION
+    } else {
+      alert("Please enter a number value to start timer!")
+      startStop.innerHTML = "Start"
       // startStopProgress()   DONT FORGET TO ADD THIS FUNCTION      
     }
   }
 
-  
-            // DONE WITH THIS ONE
-  //   if (startStop.innerHTML === "START") {
-  //     if (!(parseInt(minutes) === 0 && parseInt(seconds) === 0)) {
-  //       startStop.innerHTML = "STOP";
-  //       startStopProgress();
-  //     } else {
-  //       alert("Enter the Time Value in your Timer!");
-  //       startStop.innerHTML = "Start";
-  //       startStopProgress();
-  //   }
-  // };
-
-
-
 function progressTrack() {
-  progressStart++;
+  progressStart++
 
-  secRem = Math.floor((progressEnd - progressStart) % 60);
-  minRem = Math.floor((progressEnd - progressStart) / 60);
+  secRem = Math.floor((progressEnd - progressStart) % 60)
+  minRem = Math.floor((progressEnd - progressStart) / 60)
 
-  secElem.innerHTML = secRem.toString().length == 2 ? secRem : `0${secRem}`;
-  minElem.innerHTML = minRem.toString().length == 2 ? minRem : `0${minRem}`;
-
+  secElem.innerHTML = secRem.toString().length == 2 ? secRem : `0${secRem}`
+  minElem.innerHTML = minRem.toString().length == 2 ? minRem : `0${minRem}`
+      
   progressBar.style.background = `conic-gradient(
-        #9d0000 ${progressStart * degTravel}deg,
-        #17171a ${progressStart * degTravel}deg
-      )`;
+    #9d0000 ${progressStart * degTravel}deg,
+    #17171a ${progressStart * degTravel}deg)`
+
   if (progressStart == progressEnd) {
     progressBar.style.background = `conic-gradient(
-        #00aa51 360deg,
-        #00aa51 360deg
-      )`;
-    clearInterval(progress);
-    startStop.innerHTML = "START";
-    progress = null;
-    progressStart = 0;
+      #00aa51 360deg,
+      #00aa51 360deg)`;
+
+    clearInterval(progress)
+
+    startStop.innerHTML = "Start"
+    
+    progress = null
+    progressStart = 0
+
   }
 }
+
+
+      // DONE WITH THIS ONE
+      //   if (startStop.innerHTML === "START") {
+        //     if (!(parseInt(minutes) === 0 && parseInt(seconds) === 0)) {
+          //       startStop.innerHTML = "STOP";
+          //       startStopProgress();
+          //     } else {
+            //       alert("Enter the Time Value in your Timer!");
+            //       startStop.innerHTML = "Start";
+            //       startStopProgress();
+            //   }
+            // };
+
+
+
 
 function startStopProgress() {
   if (!progress) {
