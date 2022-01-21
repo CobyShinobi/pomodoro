@@ -6,15 +6,14 @@ document.querySelector("#startStop").addEventListener("click", startTimer)
 const progressBar = document.querySelector(".outerRing"),
       minElem = document.querySelector("#minutes"),
       secElem = document.querySelector("#seconds"),
-      startStop = document.querySelector("#stsp"),
-      setting = document.querySelector("#setting")
+      startStop = document.querySelector("#startStop")
+      // setting = document.querySelector("#setting")   SHOULD I KEEP THE COG OUT?
 
 // LETS
-let seconds = document.querySelector("#seconds").innerHTML,
-    minutes = document.querySelector("#minutes").innerHTML,
+let minutes = document.querySelector("#minutes").innerHTML,
     progress = null,
     progressStart = 0,
-    progressEnd = parseInt(minutes) * 60 + parseInt(seconds),
+    progressEnd = parseInt(minutes) * 60,
     speed = 1000,
     degTravel = 360 / progressEnd,
     toggleSettings = false,
@@ -24,15 +23,16 @@ let seconds = document.querySelector("#seconds").innerHTML,
 // FUNCTIONS-------------------------------------------------------------------
 function startTimer() {    
   if(startStop.innerHTML === "Start") {
-    if(parseInt(minutes) !== 0 && parseInt(seconds) !== 0) {
+    if(parseInt(minutes) !== 0) {
       startStop.innerHTML = "Stop"
-      // startStopProgress()   DONT FORGET TO ADD THIS FUNCTION
+      startStopProgress()
     } else {
       alert("Please enter a number value to start timer!")
       startStop.innerHTML = "Start"
-      // startStopProgress()   DONT FORGET TO ADD THIS FUNCTION      
+      startStopProgress()      
     }
   }
+}
 
 function progressTrack() {
   progressStart++
@@ -40,7 +40,7 @@ function progressTrack() {
   secRem = Math.floor((progressEnd - progressStart) % 60)
   minRem = Math.floor((progressEnd - progressStart) / 60)
 
-  secElem.innerHTML = secRem.toString().length == 2 ? secRem : `0${secRem}`
+  // secElem.innerHTML = secRem.toString().length == 2 ? secRem : `0${secRem}`
   minElem.innerHTML = minRem.toString().length == 2 ? minRem : `0${minRem}`
       
   progressBar.style.background = `conic-gradient(
@@ -50,15 +50,25 @@ function progressTrack() {
   if (progressStart == progressEnd) {
     progressBar.style.background = `conic-gradient(
       #00aa51 360deg,
-      #00aa51 360deg)`;
-
+      #00aa51 360deg)`
     clearInterval(progress)
-
     startStop.innerHTML = "Start"
-    
     progress = null
     progressStart = 0
 
+  }
+}
+
+function startStopProgress() {
+  if (!progress) {
+    progress = setInterval(progressTrack, speed)
+  } else {
+    clearInterval(progress)
+    progress = null
+    progressStart = 0
+    progressBar.style.background = `conic-gradient(
+      #17171a 360deg,
+      #17171a 360deg)`
   }
 }
 
@@ -78,19 +88,7 @@ function progressTrack() {
 
 
 
-function startStopProgress() {
-  if (!progress) {
-    progress = setInterval(progressTrack, speed);
-  } else {
-    clearInterval(progress);
-    progress = null;
-    progressStart = 0;
-    progressBar.style.background = `conic-gradient(
-        #17171a 360deg,
-        #17171a 360deg
-      )`;
-  }
-}
+
 
 function resetValues() {
   if (progress) {
@@ -113,22 +111,22 @@ function resetValues() {
       )`;
 }
 
-setting.onclick = function () {
-  if (!toggleSettings) {
-    toggleSettings = true;
-    minElem.contentEditable = true;
-    minElem.style.borderBottom = `1px dashed #ffffff50`;
-    secElem.contentEditable = true;
-    secElem.style.borderBottom = `1px dashed #ffffff50`;
-  } else {
-    resetValues();
-  }
-};
+// setting.onclick = function () {
+//   if (!toggleSettings) {
+//     toggleSettings = true;
+//     minElem.contentEditable = true;
+//     minElem.style.borderBottom = `1px dashed #ffffff50`;
+//     secElem.contentEditable = true;
+//     secElem.style.borderBottom = `1px dashed #ffffff50`;
+//   } else {
+//     resetValues();
+//   }
+// };
 
-minElem.onblur = function () {
-  resetValues();
-};
+// minElem.onblur = function () {
+//   resetValues();
+// };
 
-secElem.onblur = function () {
-  resetValues();
-};
+// secElem.onblur = function () {
+//   resetValues();
+// };
